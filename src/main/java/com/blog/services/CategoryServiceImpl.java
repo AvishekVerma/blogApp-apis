@@ -5,14 +5,16 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.blog.entities.Category;
 import com.blog.excep.ResourceNotFoundException;
 import com.blog.payloads.CategoryDto;
 import com.blog.repo.CategoryRepo;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
-
+	
 	@Autowired
 	private CategoryRepo categoryRepo;
 
@@ -35,7 +37,7 @@ public class CategoryServiceImpl implements CategoryService {
 		Category cat = this.categoryRepo.findById(categoryId)
 				.orElseThrow(() -> new ResourceNotFoundException("Category", "Category Id", categoryId));
 
-		cat.setCategoryTitlle(categoryDto.getCategoryTitle());
+		cat.setCategoryTitle(categoryDto.getCategoryTitle());
 		cat.setCategoryDescription(categoryDto.getCategoryDescription());
 
 		Category updatedCat = this.categoryRepo.save(cat);
