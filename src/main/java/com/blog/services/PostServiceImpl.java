@@ -32,7 +32,7 @@ public class PostServiceImpl implements PostService {
 	private CategoryRepo categoryRepo;
 
 	@Override
-	public Post createPost(PostDto postDto, Integer userId, Integer categoryId) {
+	public PostDto createPost(PostDto postDto, Integer userId, Integer categoryId) {
 		
 		User user = this.userRepo.findById(userId)
 				.orElseThrow(()-> new ResourceNotFoundException("User","User id",userId));
@@ -48,7 +48,7 @@ public class PostServiceImpl implements PostService {
 		
 		Post newPost = this.postRepo.save(post);
 		
-		return this.modelMapper.map(newPost, Post.class);
+		return this.modelMapper.map(newPost, PostDto.class);
 	}
 
 	@Override
