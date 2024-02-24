@@ -131,7 +131,7 @@ public class PostController {
 	}
 	
 	// method to serve files
-	@GetMapping(value = "posts/image/{imageName}",produces = MediaType.IMAGE_JPEG_VALUE)
+	@GetMapping(value = "posts/image/{imageName}",produces = MediaType.IMAGE_JPEG_VALUE )
 	public void downloadImage(
 			@PathVariable("imageName") String imageName, 
 			HttpServletResponse response) throws IOException {
